@@ -87,6 +87,20 @@
         .spacing {
             margin: 20px 0; /* Spacing between countdowns and quotes */
         }
+        .feedback-container {
+            margin-top: 20px;
+            background-color: #ffb6c1;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center; /* Center align the feedback container */
+        }
+        .feedback-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center align feedback section */
+        }
     </style>
 </head>
 <body>
@@ -132,6 +146,20 @@
             <div id="countdownElapsed" class="item-box">Loading...</div>
             <div class="spacing"></div> <!-- Spacing div -->
             <div id="flirtyQuote" class="quote-box">Loading...</div>
+
+            <!-- Feedback Section moved below the flirty quote -->
+            <div class="feedback-section">
+                <div class="label">Padhli Shayari? Kaisi lagi?</div>
+                <input type="text" id="userFeedback" placeholder="Type your feedback here..." />
+                <button onclick="submitFeedback()">Submit</button>
+                <button onclick="resetFeedback()">Reset Feedback</button> <!-- Reset Button -->
+
+                <!-- Feedback Display Area -->
+                <div id="feedbackDisplay" class="feedback-container">
+                    <div class="label">Feedback:</div>
+                    <div id="feedbackList"></div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -142,6 +170,30 @@
     </footer>
 
     <script>
+        // Feedback submission function
+        function submitFeedback() {
+            const feedback = document.getElementById("userFeedback").value;
+            if (feedback) {
+                // Append the feedback to the feedback list
+                const feedbackList = document.getElementById("feedbackList");
+                const feedbackItem = document.createElement("div");
+                feedbackItem.textContent = feedback;
+                feedbackList.appendChild(feedbackItem);
+
+                // Clear the input box
+                document.getElementById("userFeedback").value = "";
+            } else {
+                alert("Please enter your feedback before submitting!");
+            }
+        }
+
+        // Feedback reset function
+        function resetFeedback() {
+            const feedbackList = document.getElementById("feedbackList");
+            feedbackList.innerHTML = ""; // Clear the feedback list
+            document.getElementById("userFeedback").value = ""; // Clear the input box
+        }
+
         // Countdown calculations
         function getCountdownText() {
             const currentTime = new Date();
@@ -164,42 +216,42 @@
             const remainingSeconds = Math.floor((remainingMilliseconds / 1000) % 60);
 
             return [
-                `${elapsedDays} days, ${elapsedHours} hrs, ${elapsedMinutes} mins, ${elapsedSeconds} secs`,
-                `${remainingDays} days, ${remainingHours} hrs, ${remainingMinutes} mins, ${remainingSeconds} secs`
+                `Elapsed: ${elapsedDays} days, ${elapsedHours} hours, ${elapsedMinutes} minutes, ${elapsedSeconds} seconds`,
+                `Next Birthday in: ${remainingDays} days, ${remainingHours} hours, ${remainingMinutes} minutes, ${remainingSeconds} seconds`
             ];
         }
 
-        // Quotes array
+        // Motivational and Flirty Quotes
         const motivationalQuotes = [
-            "Believe in yourself! You're unstoppable!",
-            "Chase your dreams and never look back!",
-            "Every day is a new chance to shine!",
-            "Smile! The world is watching you do amazing things.",
+            "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.",
+            "The only limit to our realization of tomorrow will be our doubts of today.",
+            "The future belongs to those who believe in the beauty of their dreams.",
+            "Do something today that your future self will thank you for.",
+            "You are capable of amazing things!",
+            "Keep pushing, you're doing great!"
         ];
+
         const flirtyQuotes = [
-            "You're the kind of magic people write stories about. 😘",
-            "If I had a star for every time you made me smile, I'd hold a galaxy.",
-            "Hey there, heart-stealer! Keep dazzling.",
-            "Remember, you’re fabulous just as you are!",
+            "Are you a magician? Because every time I look at you, everyone else disappears.",
+            "Do you have a map? I keep getting lost in your eyes.",
+            "Is your name Google? Because you have everything I’m searching for.",
+            "If you were a vegetable, you’d be a cute-cumber!",
+            "Do you believe in love at first sight, or should I walk by again?"
         ];
 
-        // Function to display countdowns, quotes, and shayari
-        function updateStaticItems() {
-            const [elapsedText, remainingText] = getCountdownText();
-            document.getElementById("countdownElapsed").textContent = elapsedText;
-            document.getElementById("countdownRemaining").textContent = remainingText;
+        // Function to display the quotes and countdown
+        function displayInfo() {
+            const [countdownElapsed, countdownRemaining] = getCountdownText();
+            document.getElementById("countdownElapsed").textContent = countdownElapsed;
+            document.getElementById("countdownRemaining").textContent = countdownRemaining;
 
-            // Get daily quotes
-            const date = new Date();
-            const motivationalQuote = motivationalQuotes[date.getDate() % motivationalQuotes.length];
-            const flirtyQuote = flirtyQuotes[date.getDate() % flirtyQuotes.length];
-            
-            document.getElementById("motivationalQuote").textContent = motivationalQuote;
-            document.getElementById("flirtyQuote").textContent = flirtyQuote;
+            document.getElementById("motivationalQuote").textContent = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+            document.getElementById("flirtyQuote").textContent = flirtyQuotes[Math.floor(Math.random() * flirtyQuotes.length)];
         }
 
-        // Initial load
-        updateStaticItems();
+        // Call displayInfo on page load
+        document.addEventListener("DOMContentLoaded", displayInfo);
     </script>
+
 </body>
 </html>
