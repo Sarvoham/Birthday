@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Dear Prekshaaa!!!</title>
+    <style>
+        /* Main styling */
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffe4e1;
+            color: #333;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background-color: #ff69b4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            width: 100%;
+        }
+        footer {
+            background-color: #ff69b4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+            font-size: 1.2em;
+            position: relative;
+            bottom: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin: 40px 0;
+            gap: 40px;
+            width: 100%;
+        }
+        .item-box {
+            width: 220px;
+            padding: 15px;
+            background-color: #ffb6c1;
+            color: #c71585;
+            font-style: italic;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .shayari-box {
+            width: 300px; /* Increased width for shayari box */
+            padding: 15px;
+            background-color: #ffb6c1;
+            color: #c71585;
+            font-style: italic;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .label {
+            font-size: 1.1em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .shayari-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .quote-box {
+            background-color: #ffb6c1;
+            color: #c71585;
+            font-style: italic;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 10px;
+            width: 220px;
+            text-align: center;
+        }
+        .spacing {
+            margin: 20px 0; /* Spacing between countdowns and quotes */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        Happy Birthday Dear Prekshaaa!!! 🎉
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="container">
+        <!-- Left Column -->
+        <div>
+            <div class="label">Until next time...</div>
+            <div id="countdownRemaining" class="item-box">Loading...</div>
+            <div class="spacing"></div> <!-- Spacing div -->
+            <div id="motivationalQuote" class="quote-box">Loading...</div>
+        </div>
+
+        <!-- Center Column - Shayari -->
+        <div class="shayari-container">
+            <div class="label">Kuch khayal aaya aaj, Suno tum bhi zara</div>
+            <div id="shayari" class="shayari-box">
+                <!-- Editable Shayari Section -->
+                jaanta hu dar lagta hai,<br>
+                tumhe mujhe jaane se bhi dar lgta<br>
+                jaanta hu ki aanjaan hi h ham tab bhi<br>
+                mujhe tumhe khone se bhi dar lgta h,<br>
+                <br>
+                dur toh bohot h,<br>
+                magar yeh chuppi aur duriya bana degi<br>
+                hamesha aana aur rhena chahate h kareeb tumhare,<br>
+                magar shayad aaj raat tum mujhe bhula dogi<br>
+                <br>
+                yaad mein mere tum hamesha rahogi,<br>
+                bilkul meri tarah meri khayalo mein bhi akeli rahogi....
+            </div> <!-- End of Editable Shayari Section -->
+        </div>
+
+        <!-- Right Column -->
+        <div>
+            <div class="label">You've been Gracing us with your presence since...</div>
+            <div id="countdownElapsed" class="item-box">Loading...</div>
+            <div class="spacing"></div> <!-- Spacing div -->
+            <div id="flirtyQuote" class="quote-box">Loading...</div>
+        </div>
+    </div>
+
+    <!-- Footer Section with Heartfelt Message -->
+    <footer>
+        <div class="label">Just wanna say that...</div>
+        <p id="heartfeltMessage">I know it feels weird to get such a gift basically from a stranger but not everyone is same chica... I just felt you're a very good person jiske kabhi kisi ne nahi samjha ya try bhi nahi kiya... toh I just wanna be there and prove ya ki yep not everyone's the same chica. I'll be always a text/call(dc obv) away from you so don't ever hesitate if ya feel lost or feel low ya smjh na aara ho ki kya hua kya karu kisse baat kru after you've had a bad day or something... I'll be always here for you Chica!!!</p>
+    </footer>
+
+    <script>
+        // Countdown calculations
+        function getCountdownText() {
+            const currentTime = new Date();
+            const startDate = new Date("2004-10-31T00:00:00");
+
+            const elapsedMilliseconds = currentTime - startDate;
+            const elapsedDays = Math.floor(elapsedMilliseconds / (1000 * 60 * 60 * 24));
+            const elapsedHours = Math.floor((elapsedMilliseconds / (1000 * 60 * 60)) % 24);
+            const elapsedMinutes = Math.floor((elapsedMilliseconds / (1000 * 60)) % 60);
+            const elapsedSeconds = Math.floor((elapsedMilliseconds / 1000) % 60);
+
+            let nextOct31 = new Date(currentTime.getFullYear(), 9, 31);
+            if (currentTime > nextOct31) {
+                nextOct31 = new Date(currentTime.getFullYear() + 1, 9, 31);
+            }
+            const remainingMilliseconds = nextOct31 - currentTime;
+            const remainingDays = Math.floor(remainingMilliseconds / (1000 * 60 * 60 * 24));
+            const remainingHours = Math.floor((remainingMilliseconds / (1000 * 60 * 60)) % 24);
+            const remainingMinutes = Math.floor((remainingMilliseconds / (1000 * 60)) % 60);
+            const remainingSeconds = Math.floor((remainingMilliseconds / 1000) % 60);
+
+            return [
+                `${elapsedDays} days, ${elapsedHours} hrs, ${elapsedMinutes} mins, ${elapsedSeconds} secs`,
+                `${remainingDays} days, ${remainingHours} hrs, ${remainingMinutes} mins, ${remainingSeconds} secs`
+            ];
+        }
+
+        // Quotes array
+        const motivationalQuotes = [
+            "Believe in yourself! You're unstoppable!",
+            "Chase your dreams and never look back!",
+            "Every day is a new chance to shine!",
+            "Smile! The world is watching you do amazing things.",
+        ];
+        const flirtyQuotes = [
+            "You're the kind of magic people write stories about. 😘",
+            "If I had a star for every time you made me smile, I'd hold a galaxy.",
+            "Hey there, heart-stealer! Keep dazzling.",
+            "Remember, you’re fabulous just as you are!",
+        ];
+
+        // Function to display countdowns, quotes, and shayari
+        function updateStaticItems() {
+            const [elapsedText, remainingText] = getCountdownText();
+            document.getElementById("countdownElapsed").textContent = elapsedText;
+            document.getElementById("countdownRemaining").textContent = remainingText;
+
+            // Get daily quotes
+            const date = new Date();
+            const motivationalQuote = motivationalQuotes[date.getDate() % motivationalQuotes.length];
+            const flirtyQuote = flirtyQuotes[date.getDate() % flirtyQuotes.length];
+            
+            document.getElementById("motivationalQuote").textContent = motivationalQuote;
+            document.getElementById("flirtyQuote").textContent = flirtyQuote;
+        }
+
+        // Initial load
+        updateStaticItems();
+    </script>
+</body>
+</html>
